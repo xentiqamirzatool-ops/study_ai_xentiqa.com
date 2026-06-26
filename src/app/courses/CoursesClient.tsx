@@ -27,7 +27,7 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
 
     return courses.filter((course) => {
       const matchesLevel = level === 'All' || course.level === level;
-      const matchesCategory = category === 'All' || course.categories.includes(category);
+      const matchesCategory = category === 'All' || course.categories.includes(category as Category);
 
       const searchable = [
         course.title,
