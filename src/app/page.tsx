@@ -80,14 +80,14 @@ export default function HomePage() {
         <LearningRoadmap />
       </ScrollReveal>
 
-      <section className="container-wide py-14">
+      <section className="container-wide py-16">
         <ScrollReveal>
           <div className="mb-8">
             <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-primary-500">
               Browse
             </div>
 
-            <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)]">
+            <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)] sm:text-4xl">
               Popular topics
             </h2>
           </div>
@@ -97,7 +97,10 @@ export default function HomePage() {
           {TOPICS.map((topic, index) => (
             <ScrollReveal key={topic.name} delay={index * 60}>
               <Link href="/courses" className="card group block p-5 text-center">
-                <div className="text-3xl">{topic.icon}</div>
+                <div className="text-3xl transition-transform group-hover:scale-110">
+                  {topic.icon}
+                </div>
+
                 <div className="mt-3 text-sm font-bold text-[var(--text-strong)] group-hover:text-primary-500">
                   {topic.name}
                 </div>
@@ -108,14 +111,15 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-[var(--border)] bg-[var(--bg-subtle)]">
-        <div className="container-wide py-14">
+        <div className="container-wide py-16">
           <ScrollReveal>
             <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
                 <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-primary-500">
                   Popular
                 </div>
-                <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)]">
+
+                <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)] sm:text-4xl">
                   Featured courses
                 </h2>
               </div>
@@ -141,14 +145,14 @@ export default function HomePage() {
         <Testimonials />
       </ScrollReveal>
 
-      <section className="container-wide py-14">
+      <section className="container-wide py-16">
         <ScrollReveal>
           <div className="mx-auto mb-10 max-w-2xl text-center">
             <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-primary-500">
               Membership
             </div>
 
-            <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)]">
+            <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)] sm:text-4xl">
               Free forever. Pro when ready.
             </h2>
 
@@ -172,7 +176,10 @@ export default function HomePage() {
                   </div>
                 )}
 
-                <h3 className="text-xl font-black text-[var(--text-strong)]">{plan.name}</h3>
+                <h3 className="text-xl font-black text-[var(--text-strong)]">
+                  {plan.name}
+                </h3>
+
                 <div className="mt-3 text-3xl font-black text-[var(--text-strong)]">
                   {plan.priceLabel}
                 </div>

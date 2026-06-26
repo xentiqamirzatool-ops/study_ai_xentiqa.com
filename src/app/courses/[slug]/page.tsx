@@ -1,75 +1,247 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  Crown,
+  PlayCircle,
+  Star,
+  Users,
+} from 'lucide-react';
 import { courses, getCourse } from '@/data/courses';
-import { ArrowRight, Star, Clock, Users, BookOpen, Crown, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { levelColor } from '@/lib/utils';
 
-export function generateStaticParams() { return courses.map(c => ({ slug: c.slug })); }
+export function generateStaticParams() {
+  return courses.map((course) => ({ slug: course.slug }));
+}
 
 export default function CoursePage({ params }: { params: { slug: string } }) {
   const course = getCourse(params.slug);
-  if (!course) notFound();
+
+  if (!course) {
+    notFound();
+  }
+
+  const firstLesson = course.lessons[0];
+
   return (
     <>
-      <div className="bg-ink-50 border-b border-ink-200">
-        <div className="container-wide py-10">
-          <div className="flex items-center gap-2 text-xs text-ink-500 mb-4">
-            <Link href="/courses" className="hover:text-brand-700">Courses</Link><ChevronRight className="w-3 h-3" />
-            <span className="text-ink-900">{course.title}</span>
+      <section className="neural-bg border-b border-[var(--border)]">
+        <div className="container-wide py-12">
+          <div className="mb-6 flex items-center gap-2 text-xs font-bold text-[var(--text-muted)]">
+            <Link href="/courses" className="hover:text-primary-500">
+              Courses
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-[var(--text-strong)]">{course.title}</span>
           </div>
-          <div className="flex flex-wrap gap-2 mb-3">
-            <span className={`badge ${levelColor(course.level)}`}>{course.level}</span>
-            {course.categories.map(c => <span key={c} className="badge bg-white text-ink-700 border-ink-200">{c}</span>)}
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold">{course.title}</h1>
-          <p className="mt-3 text-lg text-ink-600">{course.tagline}</p>
-          <div className="mt-5 flex flex-wrap gap-5 text-sm text-ink-600">
-            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{course.hours}h</span>
-            <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4" />{course.lessonsCount} lessons</span>
-            <span className="flex items-center gap-1.5"><Users className="w-4 h-4" />{course.students.toLocaleString()}</span>
-            <span className="flex items-center gap-1.5"><Star className="w-4 h-4 fill-amber-400 text-amber-400" />{course.rating}</span>
-          </div>
-        </div>
-      </div>
-      <div className="container-wide py-10 grid lg:grid-cols-[1fr_320px] gap-10">
-        <div>
-          <h2 className="text-xl font-bold mb-3">Overview</h2>
-          <p className="text-ink-700">{course.description}</p>
-          <div className="mt-6 card p-5 bg-brand-50 border-brand-200">
-            <h3 className="text-sm font-semibold text-brand-900 mb-3 uppercase">What you will learn</h3>
-            <div className="grid sm:grid-cols-2 gap-2">
-              {course.lessons.flatMap(l => l.whatYouLearn).slice(0,8).map((x,i) => (
-                <div key={i} className="flex gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-brand-600 flex-none mt-0.5" />{x}</div>
-              ))}
+
+          <div className="grid gap-10 lg:grid-cols-[1fr_320px] lg:items-center">
+            <div>
+              <div className="mb-4 flex flex-wrap gap-2">
+                <span className={`badge ${levelColor(course.level)}`}>
+                  {course.level}
+                </span>
+
+                {course.categories.map((category) => (
+                  <span
+                    key={category}
+                    className="badge border-[var(--border)] bg-[var(--surface)] text-[var(--text-body)]"
+                  >
+                    {category}
+                  </span>
+                ))}
+
+                {course.isPro && (
+                  <span className="badge border-amber-300 bg-amber-100 text-amber-800">
+                    <Crown className="h-3 w-3" />
+                    PRO
+                  </span>
+                )}
+              </div>
+
+              <h1 className="max-w-4xl text-4xl font-black tracking-tight text-[var(--text-strong)] sm:text-5xl">
+                {course.title}
+              </h1>
+
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--text-body)]">
+                {course.tagline}
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-5 text-sm font-bold text-[var(--text-muted)]">
+                <span className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-primary-500" />
+                  {course.hours}h
+                </span>
+
+                <span className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 text-primary-500" />
+                  {course.lessonsCount} lessons
+                </span>
+
+                <span className="flex items-center gap-2">
+                  <Users className="h-4 w-4 text-primary-500" />
+                  {course.students.toLocaleString()} students
+                </span>
+
+                <span className="flex items-center gap-2">
+                  <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                  {course.rating}
+                </span>
+              </div>
             </div>
-          </div>
-          <h2 className="text-xl font-bold mt-10 mb-4">Course Content</h2>
-          <div className="card divide-y divide-ink-100">
-            {course.lessons.map((l, i) => (
-              <Link key={l.slug} href={`/courses/${course.slug}/${l.slug}`} className="flex items-center justify-between p-4 hover:bg-ink-50 group">
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="w-7 h-7 rounded bg-ink-100 text-xs flex items-center justify-center font-semibold">{i+1}</span>
-                  <div className="min-w-0">
-                    <div className="font-medium group-hover:text-brand-700 truncate">{l.title}</div>
-                    <div className="text-xs text-ink-500 truncate">{l.summary}</div>
+
+            <div className="card overflow-hidden">
+              <div
+                className={`flex h-44 items-center justify-center bg-gradient-to-br ${course.color}`}
+              >
+                <span className="text-6xl">{course.cover}</span>
+              </div>
+
+              <div className="p-5">
+                <Link
+                  href={`/courses/${course.slug}/${firstLesson.slug}`}
+                  className="btn btn-primary w-full"
+                >
+                  Start Course
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <div className="mt-4 grid grid-cols-2 gap-3 text-center text-sm">
+                  <div className="rounded-xl border border-[var(--border)] p-3">
+                    <div className="font-black text-[var(--text-strong)]">
+                      {course.lessonsCount}
+                    </div>
+                    <div className="text-xs text-[var(--text-muted)]">Lessons</div>
+                  </div>
+
+                  <div className="rounded-xl border border-[var(--border)] p-3">
+                    <div className="font-black text-[var(--text-strong)]">
+                      {course.level}
+                    </div>
+                    <div className="text-xs text-[var(--text-muted)]">Level</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-ink-500">
-                  {l.isPro && <span className="badge bg-amber-50 text-amber-700 border-amber-200"><Crown className="w-3 h-3" />Pro</span>}
-                  <span>{l.duration}</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
-              </Link>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
-        <aside className="lg:sticky lg:top-20 self-start">
-          <div className="card p-5">
-            <div className={`h-32 -mx-5 -mt-5 mb-4 bg-gradient-to-br ${course.color} flex items-center justify-center text-5xl rounded-t-xl`}>{course.cover}</div>
-            <Link href={`/courses/${course.slug}/${course.lessons[0].slug}`} className="btn btn-primary w-full">Start Course <ArrowRight className="w-4 h-4" /></Link>
-          </div>
-        </aside>
-      </div>
+      </section>
+
+      <section className="container-wide py-12">
+        <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
+          <main>
+            <div className="card p-6">
+              <h2 className="text-2xl font-black text-[var(--text-strong)]">
+                Overview
+              </h2>
+
+              <p className="mt-4 leading-8 text-[var(--text-body)]">
+                {course.description}
+              </p>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-primary-500/20 bg-primary-500/5 p-6">
+              <h2 className="text-sm font-black uppercase tracking-[0.18em] text-primary-500">
+                What you will learn
+              </h2>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {course.lessons
+                  .flatMap((lesson) => lesson.whatYouLearn)
+                  .slice(0, 8)
+                  .map((item, index) => (
+                    <div
+                      key={`${item}-${index}`}
+                      className="flex gap-3 text-sm leading-6 text-[var(--text-body)]"
+                    >
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-success" />
+                      {item}
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <div className="mb-5">
+                <div className="text-xs font-black uppercase tracking-[0.2em] text-primary-500">
+                  Curriculum
+                </div>
+
+                <h2 className="mt-2 text-2xl font-black text-[var(--text-strong)]">
+                  Course content
+                </h2>
+              </div>
+
+              <div className="card divide-y divide-[var(--border)] overflow-hidden">
+                {course.lessons.map((lesson, index) => (
+                  <Link
+                    key={lesson.slug}
+                    href={`/courses/${course.slug}/${lesson.slug}`}
+                    className="group flex items-center justify-between gap-4 p-4 transition hover:bg-[var(--bg-subtle)]"
+                  >
+                    <div className="flex min-w-0 items-center gap-3">
+                      <span className="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-primary-500/10 text-sm font-black text-primary-500">
+                        {index + 1}
+                      </span>
+
+                      <div className="min-w-0">
+                        <div className="truncate font-black text-[var(--text-strong)] group-hover:text-primary-500">
+                          {lesson.title}
+                        </div>
+
+                        <div className="truncate text-sm text-[var(--text-muted)]">
+                          {lesson.summary}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-none items-center gap-3 text-xs font-bold text-[var(--text-muted)]">
+                      {lesson.isPro && (
+                        <span className="badge border-amber-300 bg-amber-100 text-amber-800">
+                          <Crown className="h-3 w-3" />
+                          Pro
+                        </span>
+                      )}
+
+                      <span>{lesson.duration}</span>
+                      <ChevronRight className="h-4 w-4" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </main>
+
+          <aside className="self-start lg:sticky lg:top-24">
+            <div className="card p-5">
+              <div className="mb-4 flex items-center gap-2 font-black text-[var(--text-strong)]">
+                <PlayCircle className="h-5 w-5 text-primary-500" />
+                Start learning
+              </div>
+
+              <p className="text-sm leading-6 text-[var(--text-muted)]">
+                Begin with the first lesson and follow the full structured course path.
+              </p>
+
+              <Link
+                href={`/courses/${course.slug}/${firstLesson.slug}`}
+                className="btn btn-primary mt-5 w-full"
+              >
+                Start Course
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+
+              <Link href="/courses" className="btn btn-outline mt-3 w-full">
+                Back to Courses
+              </Link>
+            </div>
+          </aside>
+        </div>
+      </section>
     </>
   );
 }
