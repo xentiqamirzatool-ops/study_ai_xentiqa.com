@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{-webkit-font-smoothing:antialiased}
+html,body{background:#fff;color:#0f172a;font-family:'Inter',system-ui,sans-serif}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:8px}
+.card{background:white;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgb(0 0 0/0.04);transition:all .2s}
+.card:hover{box-shadow:0 4px 12px -2px rgb(0 0 0/0.08);border-color:#cbd5e1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.625rem 1.125rem;border-radius:8px;font-weight:600;font-size:.875rem;transition:all .15s;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.btn-primary{background:#16a34a;color:white}
+.btn-primary:hover{background:#15803d}
+.btn-outline{background:white;color:#0f172a;border-color:#cbd5e1}
+.btn-outline:hover{background:#f8fafc}
+.btn-ghost{background:transparent;color:#334155}
+.btn-ghost:hover{background:#f1f5f9}
+.input{width:100%;padding:.625rem .875rem;border-radius:8px;background:white;border:1px solid #cbd5e1;color:#0f172a;font-size:.875rem;outline:none;transition:all .15s}
+.input:focus{border-color:#16a34a;box-shadow:0 0 0 3px rgb(22 163 74/0.12)}
+.badge{display:inline-flex;align-items:center;gap:.25rem;padding:.125rem .5rem;border-radius:9999px;font-size:.6875rem;font-weight:600;border:1px solid}
+.code-block{font-family:'JetBrains Mono',monospace;background:#0f172a;color:#e2e8f0;border-radius:10px;padding:1.25rem;overflow-x:auto;font-size:.8125rem;line-height:1.7}
+.prose-content{font-size:1rem;line-height:1.75;color:#334155}
+.prose-content p{margin:1rem 0}
+.prose-content strong{color:#0f172a;font-weight:600}
+.prose-content code{background:#f1f5f9;color:#16a34a;padding:.125rem .375rem;border-radius:4px;font-size:.875em;font-family:'JetBrains Mono',monospace}
+.prose-content h2{font-size:1.5rem;font-weight:700;color:#0f172a;margin:2rem 0 1rem}
+.container-wide{max-width:1280px;margin:0 auto;padding-left:1rem;padding-right:1rem}
+@media (min-width:640px){.container-wide{padding-left:1.5rem;padding-right:1.5rem}}
+.side-link{display:flex;align-items:center;gap:.625rem;padding:.5rem .75rem;border-radius:6px;font-size:.875rem;color:#475569;transition:all .15s}
+.side-link:hover{background:#f1f5f9;color:#0f172a}
+.side-link.active{background:#f0fdf4;color:#15803d;font-weight:600}
