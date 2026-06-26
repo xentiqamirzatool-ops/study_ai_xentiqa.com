@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import MobileBottomNav from '@/components/layout/MobileBottomNav';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
@@ -12,11 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
-      <body className="min-h-screen flex flex-col bg-[var(--bg-base)] text-[var(--text-body)]">
+      <body className="min-h-screen flex flex-col bg-[var(--bg-base)] text-[var(--text-body)] pb-16 lg:pb-0">
         <ThemeProvider>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <MobileBottomNav />
         </ThemeProvider>
       </body>
     </html>
