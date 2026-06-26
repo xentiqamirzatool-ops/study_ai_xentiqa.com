@@ -1,9 +1,14 @@
 import Link from 'next/link';
-import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { courses } from '@/data/courses';
 import { plans } from '@/data/plans';
 import CourseCard from '@/components/CourseCard';
 import NeuralHero from '@/components/NeuralHero';
+import HeroStats from '@/components/home/HeroStats';
+import TrustedBy from '@/components/home/TrustedBy';
+import AIFeatures from '@/components/home/AIFeatures';
+import LearningRoadmap from '@/components/home/LearningRoadmap';
+import Testimonials from '@/components/home/Testimonials';
 
 const TOPICS = [
   { name: 'AI', icon: '🧠' },
@@ -16,135 +21,151 @@ const TOPICS = [
 
 export default function HomePage() {
   const featured = courses.slice(0, 6);
-  const totalLessons = courses.reduce((a, c) => a + c.lessons.length, 0);
 
   return (
     <>
-      <section className="bg-gradient-to-b from-brand-50 via-white to-white border-b border-ink-200">
-        <div className="container-wide py-12 sm:py-16 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+      <section className="neural-bg border-b border-[var(--border)]">
+        <div className="container-wide grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-semibold mb-5">
-              <Sparkles className="w-3.5 h-3.5" /> 100,000+ learners
+            <div className="badge badge-ai mb-5">
+              <Sparkles className="h-3.5 w-3.5" />
+              AI-powered learning
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-ink-900 leading-tight">
-              Learn AI from <span className="text-brand-600">the world's best</span> free tutorials.
+            <h1 className="max-w-2xl text-4xl font-black leading-tight tracking-tight text-[var(--text-strong)] sm:text-5xl lg:text-6xl">
+              Learn smarter, <span className="ai-gradient-text">not harder.</span>
             </h1>
 
-            <p className="mt-5 text-lg text-ink-600 max-w-xl">
-              Step-by-step lessons on AI, ML, Prompt Engineering and modern AI tools.
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--text-body)]">
+              Your personal AI tutor explains, quizzes, and coaches you through
+              structured courses in AI, ML, Python, prompt engineering, and modern AI tools.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/courses" className="btn btn-primary">
-                Browse Courses <ArrowRight className="w-4 h-4" />
+                Start Learning
+                <ArrowRight className="h-4 w-4" />
               </Link>
+
               <Link href="/learning-paths" className="btn btn-outline">
-                Roadmaps
+                Explore Roadmaps
               </Link>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-6 max-w-md">
-              <div>
-                <div className="text-2xl font-bold">{courses.length}</div>
-                <div className="text-xs text-ink-500 uppercase">Courses</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold">{totalLessons}+</div>
-                <div className="text-xs text-ink-500 uppercase">Lessons</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold">100k+</div>
-                <div className="text-xs text-ink-500 uppercase">Learners</div>
-              </div>
-            </div>
+            <HeroStats />
           </div>
 
-          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0">
+          <div className="mx-auto w-full max-w-xl lg:max-w-none">
             <NeuralHero />
           </div>
         </div>
       </section>
 
-      <section className="container-wide py-12">
+      <TrustedBy />
+
+      <AIFeatures />
+
+      <LearningRoadmap />
+
+      <section className="container-wide py-14">
         <div className="mb-8">
-          <div className="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">
+          <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-primary-500">
             Browse
           </div>
-          <h2 className="text-2xl font-bold">Topics</h2>
+
+          <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)]">
+            Popular topics
+          </h2>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-          {TOPICS.map((t) => (
-            <Link key={t.name} href="/courses" className="card p-4 text-center group">
-              <div className="text-3xl">{t.icon}</div>
-              <div className="text-xs font-semibold mt-2 group-hover:text-brand-700">
-                {t.name}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {TOPICS.map((topic) => (
+            <Link key={topic.name} href="/courses" className="card group p-5 text-center">
+              <div className="text-3xl">{topic.icon}</div>
+              <div className="mt-3 text-sm font-bold text-[var(--text-strong)] group-hover:text-primary-500">
+                {topic.name}
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      <div className="bg-ink-50 border-y border-ink-200">
-        <section className="container-wide py-12">
-          <div className="mb-8">
-            <div className="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">
-              Popular
+      <section className="border-y border-[var(--border)] bg-[var(--bg-subtle)]">
+        <div className="container-wide py-14">
+          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-primary-500">
+                Popular
+              </div>
+              <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)]">
+                Featured courses
+              </h2>
             </div>
-            <h2 className="text-2xl font-bold">Featured Courses</h2>
-          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featured.map((c) => (
-              <CourseCard key={c.slug} course={c} />
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
             <Link href="/courses" className="btn btn-outline">
-              View all {courses.length} <ArrowRight className="w-4 h-4" />
+              View all {courses.length}
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-        </section>
-      </div>
 
-      <section className="container-wide py-12">
-        <div className="mb-8 text-center">
-          <div className="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((course) => (
+              <CourseCard key={course.slug} course={course} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Testimonials />
+
+      <section className="container-wide py-14">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-primary-500">
             Membership
           </div>
-          <h2 className="text-2xl font-bold">Free forever. Pro when ready.</h2>
+
+          <h2 className="text-3xl font-black tracking-tight text-[var(--text-strong)]">
+            Free forever. Pro when ready.
+          </h2>
+
+          <p className="mt-4 text-[var(--text-muted)]">
+            Start learning for free, then unlock AI tools, certificates, and advanced learning features.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {plans.map((p) => (
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+          {plans.map((plan) => (
             <div
-              key={p.id}
-              className={`card p-6 flex flex-col relative ${
-                p.highlight ? 'ring-2 ring-brand-500' : ''
+              key={plan.id}
+              className={`card relative flex flex-col p-6 ${
+                plan.highlight ? 'border-primary-500 shadow-glow' : ''
               }`}
             >
-              {p.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 badge bg-brand-600 text-white border-brand-700">
+              {plan.highlight && (
+                <div className="badge badge-ai absolute -top-3 left-1/2 -translate-x-1/2">
                   Popular
                 </div>
               )}
 
-              <h3 className="text-lg font-semibold">{p.name}</h3>
-              <div className="mt-2 text-3xl font-bold">{p.priceLabel}</div>
+              <h3 className="text-xl font-black text-[var(--text-strong)]">{plan.name}</h3>
+              <div className="mt-3 text-3xl font-black text-[var(--text-strong)]">
+                {plan.priceLabel}
+              </div>
 
-              <ul className="mt-5 space-y-2 text-sm flex-1">
-                {p.features.map((f) => (
-                  <li key={f} className="flex gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-brand-600 flex-none mt-0.5" />
-                    {f}
+              <ul className="mt-6 flex-1 space-y-3 text-sm text-[var(--text-body)]">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-success" />
+                    {feature}
                   </li>
                 ))}
               </ul>
 
-              <Link href="/pro" className={`btn mt-6 ${p.highlight ? 'btn-primary' : 'btn-outline'}`}>
-                {p.cta}
+              <Link
+                href="/pro"
+                className={`btn mt-6 ${plan.highlight ? 'btn-primary' : 'btn-outline'}`}
+              >
+                {plan.cta}
               </Link>
             </div>
           ))}
