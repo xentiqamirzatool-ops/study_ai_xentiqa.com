@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { BookOpen, Filter, Search, Sparkles, X } from 'lucide-react';
-import type { Course, Level } from '@/types';
+import type { Course, Level, Category } from '@/types';  // <-- FIXED: Added Category import
 import CourseCard from '@/components/CourseCard';
 
 const LEVELS: (Level | 'All')[] = ['All', 'Beginner', 'Intermediate', 'Advanced'];
@@ -10,7 +10,7 @@ const LEVELS: (Level | 'All')[] = ['All', 'Beginner', 'Intermediate', 'Advanced'
 export default function CoursesClient({ courses }: { courses: Course[] }) {
   const [query, setQuery] = useState('');
   const [level, setLevel] = useState<Level | 'All'>('All');
-  const [category, setCategory] = useState('All');
+  const [category, setCategory] = useState<Category | 'All'>('All');  // <-- FIXED: Added proper type
 
   const categories = useMemo(() => {
     const unique = new Set<string>();
@@ -27,7 +27,7 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
 
     return courses.filter((course) => {
       const matchesLevel = level === 'All' || course.level === level;
-      const matchesCategory = category === 'All' || course.categories.includes(category as Category);
+      const matchesCategory = category === 'All' || course.categories.includes(category);
 
       const searchable = [
         course.title,
@@ -157,7 +157,7 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
                   <button
                     key={item}
                     type="button"
-                    onClick={() => setCategory(item)}
+                    onClick={() => setCategory(item as Category | 'All')}
                     className={`rounded-full border px-3 py-1.5 text-xs font-black transition ${
                       category === item
                         ? 'border-primary-500 bg-primary-500 text-white'
