@@ -9,12 +9,12 @@ import {
   Crown,
   Map,
   Menu,
-  Search,
   Sparkles,
   User,
   X,
 } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
+import CommandPalette from '@/components/CommandPalette';
 
 const NAV_ITEMS = [
   { href: '/courses', label: 'Courses', icon: BookOpen },
@@ -68,13 +68,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/courses"
-            className="hidden items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-semibold text-[var(--text-muted)] transition hover:border-primary-400 hover:text-primary-500 md:flex"
-          >
-            <Search className="h-4 w-4" />
-            Search
-          </Link>
+          <CommandPalette />
 
           <ThemeToggle />
 
@@ -123,19 +117,11 @@ export default function Header() {
             })}
 
             <div className="grid grid-cols-2 gap-3 pt-3">
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="btn btn-outline"
-              >
+              <Link href="/login" onClick={() => setOpen(false)} className="btn btn-outline">
                 Login
               </Link>
 
-              <Link
-                href="/pro"
-                onClick={() => setOpen(false)}
-                className="btn btn-primary"
-              >
+              <Link href="/pro" onClick={() => setOpen(false)} className="btn btn-primary">
                 Get Pro
               </Link>
             </div>
