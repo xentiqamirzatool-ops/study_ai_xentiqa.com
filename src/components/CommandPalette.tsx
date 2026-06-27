@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { useEffect, useMemo, useState } from 'react';
 import {
   Award,
   BookOpen,
   Bookmark,
-  Bot,
   Brain,
   Code2,
   Crown,
@@ -31,7 +31,6 @@ const QUICK_LINKS = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { label: 'Courses', href: '/courses', icon: BookOpen },
   { label: 'Roadmaps', href: '/learning-paths', icon: Map },
-  { label: 'AI Tutor', href: '/ai-tutor', icon: Bot },
   { label: 'AI Quiz', href: '/ai-quiz', icon: FileQuestion },
   { label: 'Flashcards', href: '/flashcards', icon: Brain },
   { label: 'Notes', href: '/notes', icon: StickyNote },
@@ -50,6 +49,7 @@ export default function CommandPalette({
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   // Portal target is only available on the client.
   useEffect(() => setMounted(true), []);
@@ -140,7 +140,17 @@ export default function CommandPalette({
                 autoFocus
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search anything..."
+                onKeyDown={(event) => {
+                  if (event.key !== 'Enter') return;
+                  if (filteredCourses[0]) {
+                    setOpen(false);
+                    router.push(`/courses/${filteredCourses[0].slug}`);
+                  } else if (query.trim()) {
+                    setOpen(false);
+                    router.push('/courses');
+                  }
+                }}
+                placeholder="Search courses, then press Enter..."
                 className="flex-1 bg-transparent outline-none"
               />
 

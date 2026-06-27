@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Bot, Copy, RotateCcw, Sparkles, Wand2 } from 'lucide-react';
+import NeuralBackdrop from '@/components/NeuralBackdrop';
 
 const EXAMPLES = [
   'Explain transformers in 5 bullets.',
@@ -32,8 +33,9 @@ export default function AIPlayground() {
 
   return (
     <>
-      <section className="neural-bg border-b border-[var(--border)]">
-        <div className="container-wide py-14">
+      <section className="neural-bg relative overflow-hidden border-b border-[var(--border)]">
+        <NeuralBackdrop />
+        <div className="container-wide relative py-14">
           <div className="max-w-3xl">
             <div className="badge badge-ai mb-5">
               <Sparkles className="h-3.5 w-3.5" />

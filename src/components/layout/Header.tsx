@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
   BookOpen,
-  Bot,
   Brain,
   Code2,
   Crown,
@@ -18,23 +17,21 @@ import {
 import ThemeToggle from '@/components/ThemeToggle';
 import CommandPalette from '@/components/CommandPalette';
 import Logo from '@/components/Logo';
-import { useAITutor } from '@/components/ai/AITutorContext';
 
-// 'tutor' items open the floating AI Tutor window instead of navigating.
+// AI Tutor is intentionally NOT here — it's a floating chatbot (bottom-nav
+// "Tutor" + the floating button), not a navigable page.
 const NAV_ITEMS = [
-  { href: '/courses', label: 'Courses', icon: BookOpen, kind: 'link' as const },
-  { href: '/learning-paths', label: 'Roadmaps', icon: Map, kind: 'link' as const },
-  { href: '/ai-tutor', label: 'AI Tutor', icon: Bot, kind: 'tutor' as const },
-  { href: '/ai-quiz', label: 'AI Quiz', icon: FileQuestion, kind: 'link' as const },
-  { href: '/flashcards', label: 'Flashcards', icon: Brain, kind: 'link' as const },
-  { href: '/ai-playground', label: 'AI Lab', icon: Sparkles, kind: 'link' as const },
-  { href: '/code-playground', label: 'Code', icon: Code2, kind: 'link' as const },
-  { href: '/pro', label: 'Pro', icon: Crown, kind: 'link' as const },
+  { href: '/courses', label: 'Courses', icon: BookOpen },
+  { href: '/learning-paths', label: 'Roadmaps', icon: Map },
+  { href: '/ai-quiz', label: 'AI Quiz', icon: FileQuestion },
+  { href: '/flashcards', label: 'Flashcards', icon: Brain },
+  { href: '/ai-playground', label: 'AI Lab', icon: Sparkles },
+  { href: '/code-playground', label: 'Code', icon: Code2 },
+  { href: '/pro', label: 'Pro', icon: Crown },
 ];
 
 export default function Header() {
   const pathname = usePathname();
-  const { openTutor } = useAITutor();
   const [open, setOpen] = useState(false);
 
   if (pathname?.startsWith('/admin')) {
@@ -90,23 +87,6 @@ export default function Header() {
                   ? 'bg-primary-500/10 text-primary-600 dark:text-primary-300'
                   : 'text-[var(--text-body)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-strong)]'
               }`;
-
-              if (item.kind === 'tutor') {
-                return (
-                  <button
-                    key={item.href}
-                    type="button"
-                    onClick={() => {
-                      setOpen(false);
-                      openTutor();
-                    }}
-                    className={`${className} text-left`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {item.label}
-                  </button>
-                );
-              }
 
               return (
                 <Link

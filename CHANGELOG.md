@@ -173,6 +173,29 @@ Settings sub-pages (Stage 8). No new dependencies.
   is now consistent at all sizes: logo · search · theme · Pro · ☰. Dashboard,
   Profile, and Login are available inside the ☰ menu on every screen size.
 
+## Logo, share image, search, AI tutor & lively pages (June 2026)
+
+### Fixed
+- **Favicon / tab icon** now uses your `/logo.png` (with `/logo.svg` fallback).
+- **Social share preview** (WhatsApp, etc.): added `metadataBase` + Open Graph /
+  Twitter image (`/logo.png`, 1200×1200) so shared links show a picture.
+- **Global search** now responds to **Enter** — jumps to the best-matching
+  course (or the courses page). Removed "AI Tutor" from its quick links.
+- **Course-page search** overlap fixed: the global `.input` padding was
+  overriding `pl-10`. Rebuilt as a clean input + small search button (live
+  filtering as you type).
+
+### Changed
+- **AI Tutor removed from the header menu** — it's now a chatbot only, opened by
+  the floating button and the bottom-nav "Tutor".
+- **Code Playground** and **AI Lab** heroes now have an animated **neural-network
+  backdrop** (`NeuralBackdrop`, reduced-motion aware) for a livelier feel.
+
+### Action / note
+- For the richest WhatsApp/Twitter preview, a 1200×630 banner is ideal; the
+  square logo works as a thumbnail for now. Drop a `public/og.png` (1200×630)
+  and I can point the share image at it.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

@@ -111,15 +111,25 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
                 Search
               </div>
 
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" />
+              <form
+                onSubmit={(event) => event.preventDefault()}
+                className="flex items-stretch gap-2"
+              >
                 <input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search courses..."
-                  className="input pl-10"
+                  aria-label="Search courses"
+                  className="input flex-1"
                 />
-              </div>
+                <button
+                  type="submit"
+                  aria-label="Search"
+                  className="btn btn-primary shrink-0 px-3"
+                >
+                  <Search className="h-4 w-4" />
+                </button>
+              </form>
             </div>
 
             <div className="card p-5">
