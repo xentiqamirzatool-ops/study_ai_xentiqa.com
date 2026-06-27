@@ -11,6 +11,7 @@ import {
   Users,
 } from 'lucide-react';
 import { users as seed } from '@/data/users';
+import type { Role } from '@/types'; // <-- FIXED: Import Role type
 
 export default function AdminUsersPage() {
   const [list, setList] = useState(seed);
@@ -60,7 +61,7 @@ export default function AdminUsersPage() {
         <div className="card p-6">
           <ShieldCheck className="h-6 w-6 text-primary-500" />
           <div className="mt-4 text-3xl font-black text-[var(--text-strong)]">
-            {list.filter((user) => user.role.includes('admin')).length}
+            {list.filter((user) => user.role === 'Admin' || user.role === 'Super Admin').length} {/* <-- FIXED */}
           </div>
           <div className="text-sm font-bold text-[var(--text-muted)]">
             Admin users
@@ -70,7 +71,7 @@ export default function AdminUsersPage() {
         <div className="card p-6">
           <UserCheck className="h-6 w-6 text-primary-500" />
           <div className="mt-4 text-3xl font-black text-[var(--text-strong)]">
-            {list.filter((user) => user.role === 'user').length}
+            {list.filter((user) => user.role === 'Student' || user.role === 'Pro Student').length} {/* <-- FIXED */}
           </div>
           <div className="text-sm font-bold text-[var(--text-muted)]">
             Learners
