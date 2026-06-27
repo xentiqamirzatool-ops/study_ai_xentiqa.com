@@ -196,6 +196,35 @@ Settings sub-pages (Stage 8). No new dependencies.
   square logo works as a thumbnail for now. Drop a `public/og.png` (1200×630)
   and I can point the share image at it.
 
+## Favicon, share card, search, liveliness, footer (June 2026)
+
+### Fixed
+- **Favicon** forced to `/logo.png` only (was offering the SVG, which Chrome
+  preferred). Clear the browser/site cache to see it update.
+- **Share preview image** now generated dynamically as a real **1200×630 PNG**
+  via `app/opengraph-image.tsx` (`next/og`). WhatsApp/Twitter/etc. now show a
+  branded card — no dependency on a static file being deployed.
+- **Global search effectiveness**: now also matches **course lesson titles** and
+  filters the **Pages** (quick links) by your query; Enter jumps to the best
+  match (course → page → courses).
+
+### Changed
+- **Every hero with `.neural-bg` is now animated** (drifting indigo/violet glow,
+  reduced-motion aware) — courses, pro, about, features, faq, careers, settings,
+  etc. Code Playground + AI Lab also have the canvas `NeuralBackdrop`.
+- **Footer**: removed the "AI Powered Learning / Start Learning" promo card.
+
+## Favicon + designed share card (June 2026)
+
+### Fixed
+- **Favicon** now uses Next's file convention `app/icon.svg` (the most reliable
+  method) instead of the PNG that wasn't rendering. Removed the conflicting
+  `metadata.icons`. Hard-refresh / clear cache to see it.
+- **Share card** redesigned as a proper **1200×630 (1.91:1)** branded banner —
+  logo mark + "Learn smarter, not harder." + a row of product offerings
+  (Courses · AI Tutor · Roadmaps · Quizzes · Flashcards · Certificates) + URL —
+  generated dynamically by `app/opengraph-image.tsx`. No longer just the logo.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

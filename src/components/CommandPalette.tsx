@@ -80,22 +80,35 @@ export default function CommandPalette({
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  const q = query.trim().toLowerCase();
+
   const filteredCourses = useMemo(() => {
-    if (!query.trim()) {
+    if (!q) {
       return courses.slice(0, 6);
     }
 
     return courses.filter((course) =>
       (
         course.title +
+        ' ' +
         course.tagline +
+        ' ' +
         course.level +
-        course.categories.join(' ')
+        ' ' +
+        course.categories.join(' ') +
+        ' ' +
+        course.lessons.map((lesson) => lesson.title).join(' ')
       )
         .toLowerCase()
-        .includes(query.toLowerCase()),
+        .includes(q),
     );
-  }, [query]);
+  }, [q]);
+
+  // Quick links also respond to the query so the search covers the whole app.
+  const filteredLinks = useMemo(() => {
+    if (!q) return QUICK_LINKS;
+    return QUICK_LINKS.filter((link) => link.label.toLowerCase().includes(q));
+  }, [q]);
 
   return (
     <>
@@ -145,12 +158,15 @@ export default function CommandPalette({
                   if (filteredCourses[0]) {
                     setOpen(false);
                     router.push(`/courses/${filteredCourses[0].slug}`);
-                  } else if (query.trim()) {
+                  } else if (filteredLinks[0]) {
+                    setOpen(false);
+                    router.push(filteredLinks[0].href);
+                  } else if (q) {
                     setOpen(false);
                     router.push('/courses');
                   }
                 }}
-                placeholder="Search courses, then press Enter..."
+                placeholder="Search courses & pages, then press Enter..."
                 className="flex-1 bg-transparent outline-none"
               />
 
@@ -165,13 +181,14 @@ export default function CommandPalette({
             </div>
 
             <div className="max-h-[70vh] overflow-y-auto p-5">
+              {filteredLinks.length > 0 && (
               <div className="mb-6">
                 <h3 className="mb-3 text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">
-                  Quick Links
+                  Pages
                 </h3>
 
                 <div className="grid gap-2 sm:grid-cols-2">
-                  {QUICK_LINKS.map((item) => {
+                  {filteredLinks.map((item) => {
                     const Icon = item.icon;
 
                     return (
@@ -191,6 +208,7 @@ export default function CommandPalette({
                   })}
                 </div>
               </div>
+              )}
 
               <div>
                 <h3 className="mb-3 text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">

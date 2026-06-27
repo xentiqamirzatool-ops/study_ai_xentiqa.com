@@ -1,11 +1,5 @@
 import Link from 'next/link';
-import {
-  Github,
-  Linkedin,
-  Youtube,
-  BookOpen,
-  Sparkles,
-} from 'lucide-react';
+import { Github, Linkedin, Youtube } from 'lucide-react';
 import Logo from '@/components/Logo';
 
 const PRODUCT = [
@@ -144,33 +138,6 @@ export default function Footer() {
                   {title}
                 </Link>
               ))}
-
-            </div>
-
-            <div className="mt-8 rounded-2xl border border-primary-500/20 bg-primary-500/5 p-5">
-
-              <div className="flex items-center gap-2 text-primary-500">
-
-                <Sparkles className="h-5 w-5" />
-
-                <span className="font-semibold">
-                  AI Powered Learning
-                </span>
-
-              </div>
-
-              <p className="mt-3 text-sm text-[var(--text-muted)] leading-6">
-                Master AI, Machine Learning, Prompt Engineering and modern
-                AI tools with interactive lessons.
-              </p>
-
-              <Link
-                href="/courses"
-                className="btn btn-primary mt-5 w-full"
-              >
-                <BookOpen className="h-4 w-4" />
-                Start Learning
-              </Link>
 
             </div>
 
