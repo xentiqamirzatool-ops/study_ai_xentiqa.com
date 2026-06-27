@@ -166,6 +166,13 @@ Settings sub-pages (Stage 8). No new dependencies.
   and desktop-width proxies) shows the compact header: logo · search · theme ·
   Pro · ☰. Dashboard/Profile remain available in the menu below 1280px.
 
+## Header simplified (June 2026)
+
+### Changed
+- Removed **Dashboard** and **Profile** from the header bar entirely. The header
+  is now consistent at all sizes: logo · search · theme · Pro · ☰. Dashboard,
+  Profile, and Login are available inside the ☰ menu on every screen size.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

@@ -10,11 +10,9 @@ import {
   Code2,
   Crown,
   FileQuestion,
-  LayoutDashboard,
   Map,
   Menu,
   Sparkles,
-  User,
   X,
 } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -63,16 +61,6 @@ export default function Header() {
           <CommandPalette />
 
           <ThemeToggle />
-
-          <Link href="/dashboard" className="hidden xl:inline-flex btn btn-outline">
-            <LayoutDashboard className="h-4 w-4" />
-            Dashboard
-          </Link>
-
-          <Link href="/profile" className="hidden xl:inline-flex btn btn-outline">
-            <User className="h-4 w-4" />
-            Profile
-          </Link>
 
           <Link href="/pro" className="btn btn-primary px-3 sm:px-4">
             <Crown className="h-4 w-4" />
@@ -134,7 +122,7 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="container-wide mt-3 grid grid-cols-2 gap-3 px-0 xl:hidden">
+          <div className="container-wide mt-3 grid grid-cols-2 gap-3 px-0">
             <Link href="/dashboard" onClick={() => setOpen(false)} className="btn btn-outline">
               Dashboard
             </Link>
