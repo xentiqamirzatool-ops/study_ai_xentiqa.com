@@ -124,7 +124,7 @@ export default function AIPlayground() {
               </button>
             </div>
 
-            <div className="min-h-[420px] bg-[#0d1117] p-6">
+            <div className="code-surface min-h-[420px] p-6">
               <pre className="whitespace-pre-wrap font-mono text-sm leading-7 text-slate-100">
                 {output || 'Output appears here.'}
               </pre>

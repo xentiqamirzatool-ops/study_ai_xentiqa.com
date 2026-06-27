@@ -12,13 +12,6 @@ const PERKS = [
   { icon: Heart, title: 'Mission-driven', description: 'Help millions become AI-literate.' },
 ];
 
-const ROLES = [
-  { title: 'Senior Frontend Engineer', team: 'Engineering', type: 'Remote · Full-time' },
-  { title: 'Product Designer', team: 'Design', type: 'Remote · Full-time' },
-  { title: 'ML Engineer', team: 'AI', type: 'Remote · Full-time' },
-  { title: 'Content Lead, AI Curriculum', team: 'Education', type: 'Remote · Full-time' },
-];
-
 export default function CareersPage() {
   return (
     <>
@@ -62,36 +55,20 @@ export default function CareersPage() {
             Open roles
           </h2>
 
-          <div className="mt-6 space-y-3">
-            {ROLES.map((role) => (
-              <div
-                key={role.title}
-                className="card flex flex-wrap items-center justify-between gap-3 p-5"
-              >
-                <div>
-                  <div className="font-black text-[var(--text-strong)]">
-                    {role.title}
-                  </div>
-                  <div className="text-sm text-[var(--text-muted)]">
-                    {role.team} · {role.type}
-                  </div>
-                </div>
-
-                <Link href="/contact" className="btn btn-outline">
-                  Apply
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-8 text-sm text-[var(--text-muted)]">
-            Don&apos;t see your role?{' '}
-            <Link href="/contact" className="font-bold text-primary-500">
-              Tell us how you&apos;d help
+          <div className="card mt-6 p-8 text-center">
+            <p className="text-lg font-black text-[var(--text-strong)]">
+              No open roles right now
+            </p>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-[var(--text-muted)]">
+              We&apos;re not actively hiring at the moment — but we&apos;re growing
+              fast, so please check back in the future. We&apos;d still love to
+              hear from exceptional people.
+            </p>
+            <Link href="/contact" className="btn btn-outline mt-6">
+              Get in touch
+              <ArrowRight className="h-4 w-4" />
             </Link>
-            .
-          </p>
+          </div>
         </div>
       </section>
     </>

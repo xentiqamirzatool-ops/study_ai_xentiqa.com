@@ -31,8 +31,12 @@ export default function CodeBlock({
   const lines = code.split('\n');
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[#0d1117] shadow-xl">
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#131b30] to-[#080d1c] shadow-[0_24px_70px_rgba(2,6,23,0.6)] ring-1 ring-inset ring-white/5">
+      {/* glossy top sheen */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-40 w-2/3 -translate-x-1/2 rounded-full bg-primary-500/10 blur-3xl" />
+
+      <div className="relative flex items-center justify-between border-b border-white/10 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="h-3 w-3 rounded-full bg-red-500" />
           <span className="h-3 w-3 rounded-full bg-yellow-500" />
@@ -61,7 +65,7 @@ export default function CodeBlock({
         </button>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="relative overflow-x-auto">
         <table className="w-full border-collapse">
           <tbody>
             {lines.map((line, index) => (

@@ -117,13 +117,10 @@ export default function CommandPalette({
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Search"
-          className="flex h-10 items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2.5 text-sm font-semibold hover:border-primary-400 md:px-4"
+          className="flex h-10 items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2.5 text-sm font-semibold text-[var(--text-muted)] transition hover:border-primary-400 hover:text-primary-500 md:px-4"
         >
           <Search className="h-4 w-4" />
           <span className="hidden md:inline">Search</span>
-          <kbd className="ml-2 hidden rounded border border-[var(--border)] px-1.5 py-0.5 text-[10px] md:inline">
-            /
-          </kbd>
         </button>
       ) : (
         <button
@@ -144,40 +141,42 @@ export default function CommandPalette({
           >
             <div
               onClick={(event) => event.stopPropagation()}
-              className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl"
+              className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border border-primary-500/25 bg-[var(--surface)] shadow-[0_28px_90px_rgba(8,11,30,0.7)] ring-1 ring-inset ring-white/5"
             >
-            <div className="flex items-center gap-3 border-b border-[var(--border)] p-5">
-              <Search className="h-5 w-5 text-primary-500" />
+            <div className="p-4">
+              <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] px-4 py-3 transition focus-within:border-primary-500 focus-within:bg-[var(--surface)] focus-within:shadow-[0_0_22px_rgba(99,102,241,0.28)]">
+                <Search className="h-5 w-5 flex-none text-primary-500" />
 
-              <input
-                autoFocus
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key !== 'Enter') return;
-                  if (filteredCourses[0]) {
-                    setOpen(false);
-                    router.push(`/courses/${filteredCourses[0].slug}`);
-                  } else if (filteredLinks[0]) {
-                    setOpen(false);
-                    router.push(filteredLinks[0].href);
-                  } else if (q) {
-                    setOpen(false);
-                    router.push('/courses');
-                  }
-                }}
-                placeholder="Search courses & pages, then press Enter..."
-                className="flex-1 bg-transparent outline-none"
-              />
+                <input
+                  autoFocus
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key !== 'Enter') return;
+                    if (filteredCourses[0]) {
+                      setOpen(false);
+                      router.push(`/courses/${filteredCourses[0].slug}`);
+                    } else if (filteredLinks[0]) {
+                      setOpen(false);
+                      router.push(filteredLinks[0].href);
+                    } else if (q) {
+                      setOpen(false);
+                      router.push('/courses');
+                    }
+                  }}
+                  placeholder="Search courses & pages, then press Enter…"
+                  className="flex-1 bg-transparent text-[15px] font-medium text-[var(--text-strong)] outline-none placeholder:text-[var(--text-muted)] focus:shadow-none focus-visible:shadow-none"
+                />
 
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="rounded-lg p-2 hover:bg-[var(--bg-subtle)]"
+                className="flex-none rounded-lg p-1.5 text-[var(--text-muted)] transition hover:bg-rose-500/15 hover:text-rose-400"
                 aria-label="Close search"
               >
                 <X className="h-4 w-4" />
               </button>
+              </div>
             </div>
 
             <div className="max-h-[70vh] overflow-y-auto p-5">

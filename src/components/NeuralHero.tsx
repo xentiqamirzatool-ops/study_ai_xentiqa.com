@@ -42,8 +42,8 @@ export default function NeuralHero() {
         x: Math.random() * width,
         y: Math.random() * height,
         baseSize: Math.random() * 1.8 + 1.3,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
         glow: 0,
       }));
     };
@@ -96,8 +96,18 @@ export default function NeuralHero() {
             }
           }
 
-          node.vx *= 0.992;
-          node.vy *= 0.992;
+          // gentle damping so pointer impulses fade, but keep a constant drift
+          node.vx *= 0.998;
+          node.vy *= 0.998;
+
+          // enforce a minimum travel speed so the network never "parks"
+          const minSpeed = 0.35;
+          const speed = Math.sqrt(node.vx * node.vx + node.vy * node.vy);
+          if (speed < minSpeed) {
+            const angle = Math.atan2(node.vy || Math.random() - 0.5, node.vx || Math.random() - 0.5);
+            node.vx = Math.cos(angle) * minSpeed;
+            node.vy = Math.sin(angle) * minSpeed;
+          }
 
           if (node.x <= 0 || node.x >= width) node.vx *= -1;
           if (node.y <= 0 || node.y >= height) node.vy *= -1;

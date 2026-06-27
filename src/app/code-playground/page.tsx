@@ -141,7 +141,7 @@ export default function CodePlayground() {
               value={code}
               onChange={(event) => setCode(event.target.value)}
               spellCheck={false}
-              className="min-h-[420px] w-full resize-none bg-[#0d1117] p-5 font-mono text-sm leading-7 text-slate-100 outline-none"
+              className="code-surface min-h-[420px] w-full resize-none p-5 font-mono text-sm leading-7 text-slate-100 outline-none"
             />
           </div>
 
@@ -158,7 +158,7 @@ export default function CodePlayground() {
                 </div>
               </div>
 
-              <pre className="min-h-[180px] whitespace-pre-wrap bg-[#0d1117] p-5 font-mono text-sm leading-7 text-emerald-300">
+              <pre className="code-surface min-h-[180px] whitespace-pre-wrap p-5 font-mono text-sm leading-7 text-emerald-300">
                 {output || '(run to see output)'}
               </pre>
             </div>

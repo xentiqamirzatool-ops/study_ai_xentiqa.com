@@ -1,15 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <linearGradient id="fav" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#6366F1"/>
-      <stop offset="1" stop-color="#8B5CF6"/>
+    <linearGradient id="ring" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8B5CF6"/>
+      <stop offset="0.55" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#3B82F6"/>
     </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="38%" r="70%">
+      <stop offset="0" stop-color="#141a33"/>
+      <stop offset="1" stop-color="#0B1020"/>
+    </radialGradient>
   </defs>
-  <rect width="64" height="64" rx="16" fill="url(#fav)"/>
-  <circle cx="32" cy="12.5" r="2.4" fill="#fff"/>
-  <rect x="31" y="14" width="2" height="5" rx="1" fill="#fff"/>
-  <rect x="16" y="20" width="32" height="24" rx="10" fill="#fff"/>
-  <circle cx="25" cy="32" r="4" fill="#4338CA"/>
-  <circle cx="39" cy="32" r="4" fill="#7C3AED"/>
-  <path d="M25 39 q7 5 14 0" stroke="#A5B4FC" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+  <!-- dark badge -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <!-- gradient ring -->
+  <circle cx="32" cy="32" r="27.5" fill="none" stroke="url(#ring)" stroke-width="2.5"/>
+
+  <!-- side accents echoing the brain (left) & share (right) badges -->
+  <circle cx="9.5" cy="34" r="3" fill="#5EEAD4"/>
+  <circle cx="54.5" cy="34" r="3" fill="#8B5CF6"/>
+
+  <!-- antenna -->
+  <circle cx="32" cy="9.5" r="2.1" fill="#A5B4FC"/>
+  <rect x="31" y="11" width="2" height="5" rx="1" fill="#E8ECFF"/>
+
+  <!-- robot head -->
+  <rect x="19" y="15" width="26" height="25" rx="12.5" fill="#EEF2FF"/>
+  <!-- side ears -->
+  <circle cx="19" cy="28" r="3.4" fill="#CBD5E1"/>
+  <circle cx="45" cy="28" r="3.4" fill="#CBD5E1"/>
+  <!-- visor -->
+  <rect x="22.5" y="20.5" width="19" height="13.5" rx="6.75" fill="#0B1020"/>
+  <!-- smiling cyan eyes -->
+  <path d="M27 26.5 q1.6 2.8 3.2 0" fill="none" stroke="#5EEAD4" stroke-width="2.1" stroke-linecap="round"/>
+  <path d="M33.8 26.5 q1.6 2.8 3.2 0" fill="none" stroke="#5EEAD4" stroke-width="2.1" stroke-linecap="round"/>
+
+  <!-- body hint with share node -->
+  <path d="M24 47 q8 -8 16 0 v3 h-16 z" fill="#EEF2FF"/>
+  <circle cx="32" cy="46" r="2" fill="#7C3AED"/>
 </svg>

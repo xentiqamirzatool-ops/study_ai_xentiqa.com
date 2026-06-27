@@ -225,6 +225,44 @@ Settings sub-pages (Stage 8). No new dependencies.
   (Courses · AI Tutor · Roadmaps · Quizzes · Flashcards · Certificates) + URL —
   generated dynamically by `app/opengraph-image.tsx`. No longer just the logo.
 
+## Search polish, menu hover & neural motion (June 2026)
+
+### Changed
+- **Removed the "/" hint** from the search button.
+- **Search modal redesigned** to feel like an app command bar: glassy panel with
+  a gradient AI accent line, a single rounded command-bar input with a soft
+  focus-within glow (no more harsh rectangle), tidy close button.
+- **Hamburger menu button** now adopts the **Get Pro gradient** (indigo→violet)
+  on hover and while open, instead of a plain box.
+- **Home neural network now travels on its own** — increased node velocity,
+  eased the damping that was parking them, and added a minimum drift speed so it
+  continuously moves (still reacts to the pointer).
+
+## UI polish round 2 (June 2026)
+
+### Fixed
+- **Focus rectangles removed** from inputs. The global `input:focus-visible` 4px
+  ring (the bright rectangle on sign-in/admin/search) is gone; inputs now use a
+  soft brand glow (`.input:focus`) and the login/admin wrappers use a glow
+  instead of `ring-4`.
+- **Magnifying glasses removed** from every overlapping search box: course page
+  (now just the input), and admin Users / Courses / Lessons / Videos / Pages
+  (the icon overlapped the text due to `.input` padding).
+- **Search modal**: removed the top accent line; the X close now changes color
+  (rose) on hover; the input focus is a soft glow, not a hard ring.
+
+### Changed
+- **Code & output boxes are now glossy "glass"** (gradient surface + top sheen +
+  soft shadow) via a shared `.code-surface` class + upgraded `CodeBlock` and
+  `.code-block` — applied to the Code Playground editor/output, AI Lab output,
+  and admin logs.
+- **Admin login**: Super Admin / Content Admin buttons now **glow on hover**
+  (no movement), dim dark boxes with colored text.
+- **Careers**: replaced the fake roles with a polite "No open roles right now —
+  check back in the future" message.
+- **Contact page redesigned** — neural-backdrop hero, info cards, a glassy form
+  with a success state. Approachable and on-brand.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

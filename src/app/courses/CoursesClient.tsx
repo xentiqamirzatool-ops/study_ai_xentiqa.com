@@ -106,30 +106,13 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
         <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
           <aside className="space-y-5">
             <div className="card p-5">
-              <div className="mb-4 flex items-center gap-2 font-black text-[var(--text-strong)]">
-                <Search className="h-4 w-4 text-primary-500" />
-                Search
-              </div>
-
-              <form
-                onSubmit={(event) => event.preventDefault()}
-                className="flex items-stretch gap-2"
-              >
-                <input
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search courses..."
-                  aria-label="Search courses"
-                  className="input flex-1"
-                />
-                <button
-                  type="submit"
-                  aria-label="Search"
-                  className="btn btn-primary shrink-0 px-3"
-                >
-                  <Search className="h-4 w-4" />
-                </button>
-              </form>
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search courses..."
+                aria-label="Search courses"
+                className="input"
+              />
             </div>
 
             <div className="card p-5">

@@ -15,7 +15,6 @@ import {
   Plus,
   Quote,
   Save,
-  Search,
   Star,
   Trash2,
 } from 'lucide-react';
@@ -204,12 +203,11 @@ export default function AdminPagesPage() {
       <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
         <aside className="card self-start p-4 xl:sticky xl:top-24">
           <div className="relative mb-4">
-            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" />
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search pages..."
-              className="input h-12 pl-11"
+              className="input h-12"
             />
           </div>
 

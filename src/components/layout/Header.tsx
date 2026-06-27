@@ -67,7 +67,11 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-strong)]"
+            className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition ${
+              open
+                ? 'border-transparent bg-gradient-to-br from-primary-500 to-secondary-600 text-white shadow-glow'
+                : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-strong)] hover:border-transparent hover:bg-gradient-to-br hover:from-primary-500 hover:to-secondary-600 hover:text-white'
+            }`}
             aria-label="Open menu"
             aria-expanded={open}
           >

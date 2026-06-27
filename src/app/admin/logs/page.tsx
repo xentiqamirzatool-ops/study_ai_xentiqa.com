@@ -40,7 +40,7 @@ export default function AdminLogsPage() {
         </span>
       </header>
 
-      <div className="overflow-x-auto rounded-2xl border border-[#1e293b] bg-[#020617] p-5 font-mono text-xs leading-relaxed">
+      <div className="code-surface overflow-x-auto rounded-2xl border border-white/10 p-5 font-mono text-xs leading-relaxed">
         {LOGS.map((log, i) => (
           <div key={i} className="whitespace-nowrap">
             <span className="text-slate-500">{log.time}</span>{' '}

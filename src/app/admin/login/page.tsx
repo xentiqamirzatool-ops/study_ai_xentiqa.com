@@ -57,7 +57,7 @@ export default function AdminLoginPage() {
               Email
             </label>
 
-            <div className="flex h-14 items-center rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-2 transition focus-within:border-primary-500 focus-within:ring-4 focus-within:ring-primary-500/20">
+            <div className="flex h-14 items-center rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-2 transition focus-within:border-primary-500 focus-within:shadow-[0_0_18px_rgba(99,102,241,0.22)]">
               <div className="flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)]">
                 <Mail className="h-5 w-5" />
               </div>
@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
               Password
             </label>
 
-            <div className="flex h-14 items-center rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-2 transition focus-within:border-primary-500 focus-within:ring-4 focus-within:ring-primary-500/20">
+            <div className="flex h-14 items-center rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-2 transition focus-within:border-primary-500 focus-within:shadow-[0_0_18px_rgba(99,102,241,0.22)]">
               <div className="flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)]">
                 <Lock className="h-5 w-5" />
               </div>
@@ -116,7 +116,7 @@ export default function AdminLoginPage() {
           <button
             type="button"
             onClick={() => fill('superAdmin')}
-            className="rounded-xl border border-rose-500/25 bg-rose-500/10 px-3 py-3 text-xs font-black text-rose-500"
+            className="rounded-xl border border-rose-500/25 bg-rose-500/10 px-3 py-3 text-xs font-black text-rose-400 transition hover:border-rose-500/50 hover:shadow-[0_0_20px_rgba(244,63,94,0.35)]"
           >
             Super Admin
           </button>
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
           <button
             type="button"
             onClick={() => fill('admin')}
-            className="rounded-xl border border-primary-500/25 bg-primary-500/10 px-3 py-3 text-xs font-black text-primary-500"
+            className="rounded-xl border border-primary-500/25 bg-primary-500/10 px-3 py-3 text-xs font-black text-primary-400 transition hover:border-primary-500/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.35)]"
           >
             Content Admin
           </button>
