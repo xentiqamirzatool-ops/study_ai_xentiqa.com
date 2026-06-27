@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { courses, getLesson } from '@/data/courses';
 import CodeBlock from '@/components/CodeBlock';
+import QuizPanel from '@/components/QuizPanel';
 
 export function generateStaticParams() {
   const params: { slug: string; lesson: string }[] = [];
@@ -240,6 +241,10 @@ export default function LessonPage({
               {lesson.practice}
             </p>
           </section>
+        )}
+
+        {lesson.quiz && lesson.quiz.length > 0 && (
+          <QuizPanel quiz={lesson.quiz} />
         )}
 
         <div className="mt-10 flex justify-between gap-3 border-t border-[var(--border)] pt-6">

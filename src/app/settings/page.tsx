@@ -15,31 +15,37 @@ const SETTINGS = [
     title: 'Profile',
     description: 'Manage your name, email, and public learner profile.',
     icon: User,
+    href: '/profile',
   },
   {
     title: 'Security',
     description: 'Control password, login sessions, and account protection.',
     icon: Lock,
+    href: '/settings/security',
   },
   {
     title: 'Notifications',
     description: 'Manage lesson reminders, course updates, and AI alerts.',
     icon: Bell,
+    href: undefined,
   },
   {
     title: 'Theme',
     description: 'Switch between light, dark, and system appearance.',
     icon: Palette,
+    href: '/settings/theme',
   },
   {
     title: 'Billing',
     description: 'Manage StudyAI Pro, invoices, and payment settings.',
     icon: CreditCard,
+    href: '/settings/billing',
   },
   {
     title: 'Privacy',
     description: 'Control data exports, saved history, and privacy choices.',
     icon: ShieldCheck,
+    href: '/privacy',
   },
 ];
 
@@ -116,9 +122,15 @@ export default function SettingsPage() {
                       {item.description}
                     </p>
 
-                    <button type="button" className="btn btn-outline mt-5">
-                      Manage
-                    </button>
+                    {item.href ? (
+                      <Link href={item.href} className="btn btn-outline mt-5">
+                        Manage
+                      </Link>
+                    ) : (
+                      <button type="button" className="btn btn-outline mt-5" disabled>
+                        Coming soon
+                      </button>
+                    )}
                   </div>
                 );
               })}
