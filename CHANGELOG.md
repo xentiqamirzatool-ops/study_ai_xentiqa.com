@@ -148,6 +148,15 @@ Settings sub-pages (Stage 8). No new dependencies.
 - To use your own robot logo, drop it at **`public/logo.png`** (square PNG,
   ≥512×512). No code change needed — it overrides the SVG automatically.
 
+## Header mobile actions (June 2026)
+
+### Fixed
+- Mobile header was missing **Get Pro** and the **menu (hamburger) button**.
+  Both are now always visible. Get Pro is compact on phones (crown + "Pro",
+  expands to "Get Pro" at `sm+`). Dashboard/Profile remain desktop-only (`lg+`)
+  and are available in the menu on mobile. Mobile header now reads:
+  logo · search · theme · Pro · menu — fits without overflow.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

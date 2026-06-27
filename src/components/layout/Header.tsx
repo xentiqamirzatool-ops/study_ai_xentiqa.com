@@ -57,8 +57,9 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Actions — consistent across all sizes; heavy items hide on mobile */}
-        <div className="flex items-center gap-2">
+        {/* Actions. Dashboard/Profile are desktop-only (they live in the menu on
+            mobile). Search, theme, Get Pro and the menu button are always shown. */}
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <CommandPalette />
 
           <ThemeToggle />
@@ -73,8 +74,9 @@ export default function Header() {
             Profile
           </Link>
 
-          <Link href="/pro" className="hidden lg:inline-flex btn btn-primary">
-            Get Pro
+          <Link href="/pro" className="btn btn-primary px-3 sm:px-4">
+            <Crown className="h-4 w-4" />
+            <span className="hidden sm:inline">Get&nbsp;</span>Pro
           </Link>
 
           <button
