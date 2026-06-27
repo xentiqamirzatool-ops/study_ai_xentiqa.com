@@ -8,6 +8,7 @@ import {
   Bot,
   Code2,
   Crown,
+  FileQuestion,
   LayoutDashboard,
   Map,
   Menu,
@@ -22,6 +23,7 @@ const NAV_ITEMS = [
   { href: '/courses', label: 'Courses', icon: BookOpen },
   { href: '/learning-paths', label: 'Roadmaps', icon: Map },
   { href: '/ai-tutor', label: 'AI Tutor', icon: Bot },
+  { href: '/ai-quiz', label: 'AI Quiz', icon: FileQuestion },
   { href: '/ai-playground', label: 'AI Lab', icon: Sparkles },
   { href: '/code-playground', label: 'Code', icon: Code2 },
   { href: '/pro', label: 'Pro', icon: Crown },
@@ -38,7 +40,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[var(--bg-base)]/85 backdrop-blur-xl">
       <div className="container-wide flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-3 font-extrabold text-lg">
+        <Link href="/" className="flex items-center gap-3 text-lg font-extrabold">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 shadow-glow">
             <span className="text-sm font-black text-white">S</span>
           </span>
@@ -125,35 +127,19 @@ export default function Header() {
             })}
 
             <div className="grid grid-cols-2 gap-3 pt-3">
-              <Link
-                href="/dashboard"
-                onClick={() => setOpen(false)}
-                className="btn btn-outline"
-              >
+              <Link href="/dashboard" onClick={() => setOpen(false)} className="btn btn-outline">
                 Dashboard
               </Link>
 
-              <Link
-                href="/profile"
-                onClick={() => setOpen(false)}
-                className="btn btn-outline"
-              >
+              <Link href="/profile" onClick={() => setOpen(false)} className="btn btn-outline">
                 Profile
               </Link>
 
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="btn btn-outline"
-              >
+              <Link href="/login" onClick={() => setOpen(false)} className="btn btn-outline">
                 Login
               </Link>
 
-              <Link
-                href="/pro"
-                onClick={() => setOpen(false)}
-                className="btn btn-primary"
-              >
+              <Link href="/pro" onClick={() => setOpen(false)} className="btn btn-primary">
                 Get Pro
               </Link>
             </div>
