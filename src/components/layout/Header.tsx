@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 import CommandPalette from '@/components/CommandPalette';
+import Logo from '@/components/Logo';
 import { useAITutor } from '@/components/ai/AITutorContext';
 
 // 'tutor' items open the floating AI Tutor window instead of navigating.
@@ -50,9 +51,7 @@ export default function Header() {
       <div className="container-wide flex h-16 items-center justify-between gap-3">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-3 text-lg font-extrabold">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 shadow-glow">
-            <span className="text-sm font-black text-white">S</span>
-          </span>
+          <Logo size={36} className="h-9 w-9 shadow-glow" />
           <span className="text-[var(--text-strong)]">
             Study<span className="text-primary-500 dark:text-primary-400">AI</span>
           </span>

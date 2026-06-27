@@ -1,0 +1,18 @@
+Save your StudyAI logo image in THIS folder as:
+
+    logo.png
+
+The whole app already points at /logo.png:
+  - Header, Footer, and Admin sidebar logo
+  - Browser favicon / tab icon (metadata.icons)
+  - Open Graph / Twitter social preview image
+  - PWA manifest icons (192 / 512 / maskable)
+
+Recommended: a square PNG, at least 512x512, ideally 512x512 or 1024x1024.
+(The circular logo you have works perfectly — it's rendered rounded-full in the UI.)
+
+Optional extras you can also drop here later:
+  - favicon.ico            (classic favicon)
+  - apple-touch-icon.png   (iOS home screen)
+
+You can delete this text file once logo.png is in place.

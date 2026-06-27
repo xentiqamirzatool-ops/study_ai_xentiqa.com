@@ -23,6 +23,7 @@ import {
   X,
 } from 'lucide-react';
 import { getSession, logout } from '@/lib/auth';
+import Logo from '@/components/Logo';
 
 const NAV = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, role: 'admin' },
@@ -88,9 +89,7 @@ export default function AdminSidebar() {
       >
         <div className="flex h-16 items-center justify-between border-b border-[var(--border)] px-4">
           <Link href="/admin" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-600 shadow-glow">
-              <span className="text-sm font-black text-white">S</span>
-            </div>
+            <Logo size={40} className="h-10 w-10 shadow-glow" />
 
             <div>
               <div className="font-black text-[var(--text-strong)]">StudyAI</div>

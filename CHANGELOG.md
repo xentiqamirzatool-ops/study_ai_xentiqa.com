@@ -90,6 +90,64 @@ Settings sub-pages (Stage 8). No new dependencies.
   "Tutor" button, and the floating AI button. (Demo responses; wire to the live
   AIService in Stage 6 for real answers.)
 
+## Mobile layout fixes (June 2026)
+
+### Fixed
+- **Sticky header was breaking** because `body { overflow-x: hidden }` turned the
+  body into a horizontal scroll container, which disables `position: sticky`.
+  Switched to `overflow-x: clip` (+ `max-width: 100%` on html/body) — this still
+  prevents horizontal scrolling but does NOT break sticky, so the **header now
+  stays pinned to the top while scrolling** on mobile.
+- **No horizontal page shift on mobile.** Combined with the earlier header fix
+  (action buttons/nav collapsed into the menu on small screens), the page now
+  fits the viewport width; users only scroll horizontally if they intentionally
+  zoom in.
+- The **bottom navigation is fixed** (`fixed bottom-0`) and stays visible while
+  scrolling (already correct in code); body keeps `pb-20` so content isn't
+  hidden behind it.
+
+> Note: the live site (study.ai.xentiqa.com) must be **redeployed** to pick up
+> these changes — the screenshots showed the previous deployment.
+
+## Branding — logo wired up (June 2026)
+
+### Changed
+- Replaced the placeholder gradient "S" badge with the real StudyAI logo image
+  (`/logo.png`, rendered `rounded-full` via `next/image`) in the **Header**,
+  **Footer**, and **Admin sidebar**.
+- Pointed the **favicon / tab icon**, **Open Graph + Twitter** social preview,
+  and **PWA manifest** icons (192 / 512 / maskable) at `/logo.png`.
+
+### Action required
+- Save the logo image as **`public/logo.png`** (square PNG, ≥512×512). See
+  `public/PLACE_LOGO_HERE.txt`. Until that file is added the logo spots will be
+  blank, but the build still passes.
+
+## Mobile full-width, logo & scrollbar (June 2026)
+
+### Fixed
+- **Logo not loading (404).** `public/logo.png` didn't exist, so every logo spot
+  404'd. Added a bundled **`public/logo.svg`** (brand mark) and a `Logo`
+  component that uses `/logo.png` if you add it and **falls back to the SVG**
+  otherwise — so the logo is never broken. Favicon, Open Graph/Twitter, and the
+  PWA manifest now point at `/logo.svg` (no more 404s).
+- **Right-side blank space / horizontal shift on mobile.** Guaranteed at the
+  layout level: `overflow-x: clip` on `html`, `body`, and `main` (+ `w-full`/
+  `max-w-full`), plus an explicit `viewport` (`width=device-width`). Combined
+  with the earlier header collapse, pages now fill the viewport with no sideways
+  movement at default zoom.
+
+### Changed
+- **Scrollbar** restyled to the brand dual-tone gradient (indigo→violet on
+  WebKit; indigo on Firefox via `scrollbar-color`).
+- Logo image references migrated from `next/image` to the resilient `Logo`
+  component in Header, Footer, and Admin sidebar.
+
+### Notes
+- The AI Tutor window's **close (X) is top-right** of the panel (as required).
+- To use your own robot logo, drop it at **`public/logo.png`** (square PNG,
+  ≥512×512). No code change needed — it overrides the SVG automatically.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

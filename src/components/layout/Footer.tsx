@@ -4,9 +4,9 @@ import {
   Linkedin,
   Youtube,
   BookOpen,
-  BrainCircuit,
   Sparkles,
 } from 'lucide-react';
+import Logo from '@/components/Logo';
 
 const PRODUCT = [
   ['Courses', '/courses'],
@@ -42,9 +42,7 @@ export default function Footer() {
               href="/"
               className="flex items-center gap-3 text-xl font-bold"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 shadow-glow">
-                <BrainCircuit className="h-5 w-5 text-white" />
-              </div>
+              <Logo size={40} className="h-10 w-10 shadow-glow" />
 
               <span className="text-[var(--text-strong)]">
                 Study
