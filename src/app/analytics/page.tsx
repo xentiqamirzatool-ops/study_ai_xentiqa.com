@@ -26,7 +26,7 @@ const TOP_COURSES = [
 
 export default function AdminAnalyticsPage() {
   return (
-    <div className="space-y-6">
+    <div className="container-wide space-y-6 py-10">
       <div>
         <div className="badge badge-ai mb-3">
           <BarChart3 className="h-3.5 w-3.5" />
