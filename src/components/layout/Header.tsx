@@ -5,8 +5,10 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
   BookOpen,
+  Bot,
   Code2,
   Crown,
+  LayoutDashboard,
   Map,
   Menu,
   Sparkles,
@@ -19,6 +21,7 @@ import CommandPalette from '@/components/CommandPalette';
 const NAV_ITEMS = [
   { href: '/courses', label: 'Courses', icon: BookOpen },
   { href: '/learning-paths', label: 'Roadmaps', icon: Map },
+  { href: '/ai-tutor', label: 'AI Tutor', icon: Bot },
   { href: '/ai-playground', label: 'AI Lab', icon: Sparkles },
   { href: '/code-playground', label: 'Code', icon: Code2 },
   { href: '/pro', label: 'Pro', icon: Crown },
@@ -45,7 +48,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 xl:flex">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
@@ -72,19 +75,24 @@ export default function Header() {
 
           <ThemeToggle />
 
-          <Link href="/login" className="hidden sm:inline-flex btn btn-outline">
-            <User className="h-4 w-4" />
-            Login
+          <Link href="/dashboard" className="hidden sm:inline-flex btn btn-outline">
+            <LayoutDashboard className="h-4 w-4" />
+            Dashboard
           </Link>
 
-          <Link href="/pro" className="hidden sm:inline-flex btn btn-primary">
+          <Link href="/profile" className="hidden sm:inline-flex btn btn-outline">
+            <User className="h-4 w-4" />
+            Profile
+          </Link>
+
+          <Link href="/pro" className="hidden md:inline-flex btn btn-primary">
             Get Pro
           </Link>
 
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-strong)] lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-strong)] xl:hidden"
             aria-label="Open menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -93,7 +101,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-[var(--border)] bg-[var(--bg-base)] px-4 py-4 lg:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--bg-base)] px-4 py-4 xl:hidden">
           <nav className="space-y-2">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
@@ -117,11 +125,35 @@ export default function Header() {
             })}
 
             <div className="grid grid-cols-2 gap-3 pt-3">
-              <Link href="/login" onClick={() => setOpen(false)} className="btn btn-outline">
+              <Link
+                href="/dashboard"
+                onClick={() => setOpen(false)}
+                className="btn btn-outline"
+              >
+                Dashboard
+              </Link>
+
+              <Link
+                href="/profile"
+                onClick={() => setOpen(false)}
+                className="btn btn-outline"
+              >
+                Profile
+              </Link>
+
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="btn btn-outline"
+              >
                 Login
               </Link>
 
-              <Link href="/pro" onClick={() => setOpen(false)} className="btn btn-primary">
+              <Link
+                href="/pro"
+                onClick={() => setOpen(false)}
+                className="btn btn-primary"
+              >
                 Get Pro
               </Link>
             </div>

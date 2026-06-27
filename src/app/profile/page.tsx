@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import {
+  ArrowRight,
   Award,
   BookOpen,
   CalendarDays,
   Mail,
   Map,
   Settings,
+  ShieldCheck,
   Sparkles,
   Trophy,
   User,
@@ -16,6 +18,14 @@ const STATS = [
   { label: 'Certificates', value: '1', icon: Award },
   { label: 'Streak', value: '7 days', icon: Trophy },
   { label: 'Joined', value: '2026', icon: CalendarDays },
+];
+
+const INTERESTS = [
+  'AI',
+  'Python',
+  'Machine Learning',
+  'Prompt Engineering',
+  'AI Agents',
 ];
 
 export default function ProfilePage() {
@@ -33,7 +43,7 @@ export default function ProfilePage() {
               SA
             </div>
 
-            <div>
+            <div className="flex-1">
               <h1 className="text-4xl font-black tracking-tight text-[var(--text-strong)]">
                 StudyAI Learner
               </h1>
@@ -43,9 +53,10 @@ export default function ProfilePage() {
                 user@studyai.com
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-3">
                 <Link href="/dashboard" className="btn btn-primary">
                   Dashboard
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
 
                 <Link href="/settings" className="btn btn-outline">
@@ -90,8 +101,8 @@ export default function ProfilePage() {
 
               <p className="mt-4 leading-8 text-[var(--text-body)]">
                 Learning AI, Python, prompt engineering, and machine learning with StudyAI.
-                This profile will later include real user data, saved courses, achievements,
-                and certificates.
+                This profile will later include real user data, saved courses,
+                achievements, and certificates.
               </p>
             </div>
 
@@ -101,13 +112,35 @@ export default function ProfilePage() {
               </h2>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {['AI', 'Python', 'Machine Learning', 'Prompt Engineering', 'AI Agents'].map(
-                  (item) => (
-                    <span key={item} className="badge badge-ai">
-                      {item}
+                {INTERESTS.map((interest) => (
+                  <span key={interest} className="badge badge-ai">
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="card p-6">
+              <h2 className="text-2xl font-black text-[var(--text-strong)]">
+                Recent Activity
+              </h2>
+
+              <div className="mt-5 space-y-3">
+                {[
+                  'Completed AI Fundamentals lesson',
+                  'Started Python for AI',
+                  'Viewed Learning Roadmaps',
+                ].map((activity) => (
+                  <div
+                    key={activity}
+                    className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] p-4"
+                  >
+                    <ShieldCheck className="h-5 w-5 text-success" />
+                    <span className="text-sm font-bold text-[var(--text-body)]">
+                      {activity}
                     </span>
-                  ),
-                )}
+                  </div>
+                ))}
               </div>
             </div>
           </main>
@@ -116,15 +149,26 @@ export default function ProfilePage() {
             <div className="card p-6">
               <div className="mb-4 flex items-center gap-3">
                 <Sparkles className="h-5 w-5 text-primary-500" />
+
                 <h2 className="text-xl font-black text-[var(--text-strong)]">
                   Quick Links
                 </h2>
               </div>
 
               <div className="space-y-3">
-                <Link href="/courses" className="btn btn-outline w-full">
+                <Link href="/dashboard" className="btn btn-outline w-full">
+                  <BookOpen className="h-4 w-4" />
+                  Dashboard
+                </Link>
+
+                <Link href="/my-courses" className="btn btn-outline w-full">
                   <BookOpen className="h-4 w-4" />
                   My Courses
+                </Link>
+
+                <Link href="/certificates" className="btn btn-outline w-full">
+                  <Award className="h-4 w-4" />
+                  Certificates
                 </Link>
 
                 <Link href="/learning-paths" className="btn btn-outline w-full">
@@ -139,9 +183,12 @@ export default function ProfilePage() {
             </div>
 
             <div className="rounded-2xl border border-success/25 bg-success/10 p-6">
-              <div className="font-black text-success">Profile ready</div>
+              <div className="font-black text-success">
+                Profile ready
+              </div>
+
               <p className="mt-3 text-sm leading-7 text-[var(--text-body)]">
-                Later we will connect this page to real auth and database user records.
+                Later we will connect this page to real authentication and database records.
               </p>
             </div>
           </aside>

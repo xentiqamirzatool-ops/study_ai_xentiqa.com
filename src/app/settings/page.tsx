@@ -13,32 +13,32 @@ import {
 const SETTINGS = [
   {
     title: 'Profile',
-    description: 'Manage your name, email, and public profile.',
+    description: 'Manage your name, email, and public learner profile.',
     icon: User,
   },
   {
     title: 'Security',
-    description: 'Password, login sessions, and account protection.',
+    description: 'Control password, login sessions, and account protection.',
     icon: Lock,
   },
   {
     title: 'Notifications',
-    description: 'Control lesson reminders and course updates.',
+    description: 'Manage lesson reminders, course updates, and AI alerts.',
     icon: Bell,
   },
   {
     title: 'Theme',
-    description: 'Use light, dark, or system mode.',
+    description: 'Switch between light, dark, and system appearance.',
     icon: Palette,
   },
   {
     title: 'Billing',
-    description: 'Manage your StudyAI Pro subscription.',
+    description: 'Manage StudyAI Pro, invoices, and payment settings.',
     icon: CreditCard,
   },
   {
     title: 'Privacy',
-    description: 'Control data, exports, and privacy preferences.',
+    description: 'Control data exports, saved history, and privacy choices.',
     icon: ShieldCheck,
   },
 ];
@@ -58,14 +58,14 @@ export default function SettingsPage() {
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--text-body)]">
-            Manage your StudyAI account, security, billing, notifications, and preferences.
+            Manage your StudyAI account, security, billing, notifications, privacy, and preferences.
           </p>
         </div>
       </section>
 
       <section className="container-wide py-12">
         <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-          <aside className="card self-start p-4">
+          <aside className="card self-start p-4 lg:sticky lg:top-24">
             <Link href="/profile" className="side-link">
               <User className="h-4 w-4" />
               Profile
@@ -87,7 +87,17 @@ export default function SettingsPage() {
             </Link>
           </aside>
 
-          <main>
+          <main className="space-y-6">
+            <div className="card p-6">
+              <h2 className="text-2xl font-black text-[var(--text-strong)]">
+                Preferences
+              </h2>
+
+              <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+                These settings are currently UI-ready. Later we will connect them to real user accounts and database records.
+              </p>
+            </div>
+
             <div className="grid gap-5 sm:grid-cols-2">
               {SETTINGS.map((item) => {
                 const Icon = item.icon;
@@ -106,7 +116,7 @@ export default function SettingsPage() {
                       {item.description}
                     </p>
 
-                    <button className="btn btn-outline mt-5">
+                    <button type="button" className="btn btn-outline mt-5">
                       Manage
                     </button>
                   </div>
