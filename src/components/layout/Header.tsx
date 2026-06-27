@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {
   BookOpen,
   Bot,
+  Brain,
   Code2,
   Crown,
   FileQuestion,
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
   { href: '/learning-paths', label: 'Roadmaps', icon: Map },
   { href: '/ai-tutor', label: 'AI Tutor', icon: Bot },
   { href: '/ai-quiz', label: 'AI Quiz', icon: FileQuestion },
+  { href: '/flashcards', label: 'Flashcards', icon: Brain },
   { href: '/ai-playground', label: 'AI Lab', icon: Sparkles },
   { href: '/code-playground', label: 'Code', icon: Code2 },
   { href: '/pro', label: 'Pro', icon: Crown },
@@ -50,7 +52,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 xl:flex">
+        <nav className="hidden items-center gap-1 2xl:flex">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
@@ -94,7 +96,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-strong)] xl:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-strong)] 2xl:hidden"
             aria-label="Open menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -103,7 +105,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-[var(--border)] bg-[var(--bg-base)] px-4 py-4 xl:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--bg-base)] px-4 py-4 2xl:hidden">
           <nav className="space-y-2">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;

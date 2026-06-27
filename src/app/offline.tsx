@@ -1,80 +1,84 @@
 import Link from 'next/link';
-import { ArrowLeft, BookOpen, Home, Search, Sparkles } from 'lucide-react';
+import {
+  RefreshCw,
+  WifiOff,
+  Home,
+  BookOpen,
+  Sparkles,
+} from 'lucide-react';
 
-export default function NotFoundPage() {
+export default function OfflinePage() {
   return (
     <section className="neural-bg flex min-h-[calc(100vh-4rem)] items-center border-b border-[var(--border)]">
       <div className="container-wide py-20">
         <div className="mx-auto max-w-3xl text-center">
           <div className="badge badge-ai mb-6">
             <Sparkles className="h-3.5 w-3.5" />
-            Error 404
+            Offline Mode
           </div>
 
-          <div className="mb-6 text-8xl font-black text-primary-500">
-            404
+          <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-3xl bg-primary-500/10 text-primary-500">
+            <WifiOff className="h-12 w-12" />
           </div>
 
           <h1 className="text-4xl font-black tracking-tight text-[var(--text-strong)] sm:text-5xl">
-            Page not found
+            You're offline
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[var(--text-body)]">
-            Sorry, the page you're looking for doesn't exist or may have been moved.
-            You can return to the homepage or continue learning from our courses.
+            It looks like your internet connection is unavailable.
+            Please reconnect and refresh the page to continue learning.
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/" className="btn btn-primary">
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              className="btn btn-primary"
+            >
+              <RefreshCw className="h-4 w-4" />
+              Retry Connection
+            </button>
+
+            <Link href="/" className="btn btn-outline">
               <Home className="h-4 w-4" />
-              Back to Home
+              Home
             </Link>
 
             <Link href="/courses" className="btn btn-outline">
               <BookOpen className="h-4 w-4" />
               Browse Courses
             </Link>
-
-            <Link href="/learning-paths" className="btn btn-outline">
-              <Search className="h-4 w-4" />
-              Learning Roadmaps
-            </Link>
           </div>
 
           <div className="mt-16 grid gap-5 sm:grid-cols-3">
             <div className="card p-6">
               <BookOpen className="mx-auto h-8 w-8 text-primary-500" />
-
               <h3 className="mt-4 text-lg font-black text-[var(--text-strong)]">
-                Courses
+                Saved Courses
               </h3>
-
               <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
-                Learn AI, Python, Prompt Engineering, Machine Learning, and more.
+                Future versions will let you access downloaded lessons while offline.
               </p>
             </div>
 
             <div className="card p-6">
-              <Sparkles className="mx-auto h-8 w-8 text-primary-500" />
-
+              <RefreshCw className="mx-auto h-8 w-8 text-primary-500" />
               <h3 className="mt-4 text-lg font-black text-[var(--text-strong)]">
-                AI Tutor
+                Auto Sync
               </h3>
-
               <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
-                Ask questions, get explanations, and practice with AI-powered learning.
+                Your progress will automatically sync once your connection returns.
               </p>
             </div>
 
             <div className="card p-6">
-              <ArrowLeft className="mx-auto h-8 w-8 text-primary-500" />
-
+              <WifiOff className="mx-auto h-8 w-8 text-primary-500" />
               <h3 className="mt-4 text-lg font-black text-[var(--text-strong)]">
-                Continue Learning
+                Reconnect
               </h3>
-
               <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
-                Return to your dashboard and continue exactly where you left off.
+                Check your Wi-Fi or mobile data connection and try again.
               </p>
             </div>
           </div>

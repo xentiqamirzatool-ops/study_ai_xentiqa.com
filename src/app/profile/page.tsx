@@ -2,6 +2,7 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Award,
+  Bookmark,
   BookOpen,
   CalendarDays,
   Mail,
@@ -9,6 +10,7 @@ import {
   Settings,
   ShieldCheck,
   Sparkles,
+  StickyNote,
   Trophy,
   User,
 } from 'lucide-react';
@@ -129,7 +131,10 @@ export default function ProfilePage() {
                 {[
                   'Completed AI Fundamentals lesson',
                   'Started Python for AI',
+                  'Unlocked First Lesson achievement',
                   'Viewed Learning Roadmaps',
+                  'Saved a course bookmark',
+                  'Created a study note',
                 ].map((activity) => (
                   <div
                     key={activity}
@@ -166,9 +171,24 @@ export default function ProfilePage() {
                   My Courses
                 </Link>
 
+                <Link href="/notes" className="btn btn-outline w-full">
+                  <StickyNote className="h-4 w-4" />
+                  Notes
+                </Link>
+
+                <Link href="/bookmarks" className="btn btn-outline w-full">
+                  <Bookmark className="h-4 w-4" />
+                  Bookmarks
+                </Link>
+
                 <Link href="/certificates" className="btn btn-outline w-full">
                   <Award className="h-4 w-4" />
                   Certificates
+                </Link>
+
+                <Link href="/achievements" className="btn btn-outline w-full">
+                  <Trophy className="h-4 w-4" />
+                  Achievements
                 </Link>
 
                 <Link href="/learning-paths" className="btn btn-outline w-full">
