@@ -4,64 +4,48 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Bot, BookOpen, Home, User } from 'lucide-react';
 import CommandPalette from '@/components/CommandPalette';
-
-const ITEMS = [
-  { href: '/', label: 'Home', icon: Home },
-  { href: '/courses', label: 'Courses', icon: BookOpen },
-  { href: '/ai-tutor', label: 'Tutor', icon: Bot },
-  { href: '/profile', label: 'Me', icon: User },
-];
+import { useAITutor } from '@/components/ai/AITutorContext';
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const { openTutor } = useAITutor();
 
   if (pathname?.startsWith('/admin')) {
     return null;
   }
 
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname?.startsWith(`${href}/`);
+
+  const itemClass = (active: boolean) =>
+    `flex flex-col items-center justify-center gap-1 text-xs font-bold ${
+      active ? 'text-primary-500' : 'text-[var(--text-muted)]'
+    }`;
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--border)] bg-[var(--bg-base)]/95 backdrop-blur-xl lg:hidden">
       <div className="grid h-16 grid-cols-5">
-        {ITEMS.slice(0, 2).map((item) => {
-          const Icon = item.icon;
-          const active =
-            item.href === '/'
-              ? pathname === '/'
-              : pathname === item.href || pathname?.startsWith(`${item.href}/`);
+        <Link href="/" className={itemClass(isActive('/'))}>
+          <Home className="h-5 w-5" />
+          <span>Home</span>
+        </Link>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex flex-col items-center justify-center gap-1 text-xs font-bold ${
-                active ? 'text-primary-500' : 'text-[var(--text-muted)]'
-              }`}
-            >
-              <Icon className="h-5 w-5" />
-              <span>{item.label}</span>
-            </Link>
-          );
-        })}
+        <Link href="/courses" className={itemClass(isActive('/courses'))}>
+          <BookOpen className="h-5 w-5" />
+          <span>Courses</span>
+        </Link>
 
         <CommandPalette variant="mobile" />
 
-        {ITEMS.slice(2).map((item) => {
-          const Icon = item.icon;
-          const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+        <button type="button" onClick={openTutor} className={itemClass(false)}>
+          <Bot className="h-5 w-5" />
+          <span>Tutor</span>
+        </button>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex flex-col items-center justify-center gap-1 text-xs font-bold ${
-                active ? 'text-primary-500' : 'text-[var(--text-muted)]'
-              }`}
-            >
-              <Icon className="h-5 w-5" />
-              <span>{item.label}</span>
-            </Link>
-          );
-        })}
+        <Link href="/profile" className={itemClass(isActive('/profile'))}>
+          <User className="h-5 w-5" />
+          <span>Me</span>
+        </Link>
       </div>
     </nav>
   );

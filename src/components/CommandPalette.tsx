@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { createPortal } from 'react-dom';
 import { useEffect, useMemo, useState } from 'react';
 import {
   Award,
@@ -48,6 +49,10 @@ export default function CommandPalette({
 }: CommandPaletteProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [mounted, setMounted] = useState(false);
+
+  // Portal target is only available on the client.
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -98,11 +103,12 @@ export default function CommandPalette({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="hidden items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold hover:border-primary-400 md:flex"
+          aria-label="Search"
+          className="flex h-10 items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2.5 text-sm font-semibold hover:border-primary-400 md:px-4"
         >
           <Search className="h-4 w-4" />
-          Search
-          <kbd className="ml-2 rounded border border-[var(--border)] px-1.5 py-0.5 text-[10px]">
+          <span className="hidden md:inline">Search</span>
+          <kbd className="ml-2 hidden rounded border border-[var(--border)] px-1.5 py-0.5 text-[10px] md:inline">
             /
           </kbd>
         </button>
@@ -117,9 +123,16 @@ export default function CommandPalette({
         </button>
       )}
 
-      {open && (
-        <div className="fixed inset-0 z-[999] bg-black/60 p-4 backdrop-blur-sm">
-          <div className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl">
+      {open && mounted &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[1000] bg-black/60 p-4 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          >
+            <div
+              onClick={(event) => event.stopPropagation()}
+              className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl"
+            >
             <div className="flex items-center gap-3 border-b border-[var(--border)] p-5">
               <Search className="h-5 w-5 text-primary-500" />
 
@@ -211,8 +224,9 @@ export default function CommandPalette({
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </>
   );
 }

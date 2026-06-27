@@ -68,6 +68,28 @@ Settings sub-pages (Stage 8). No new dependencies.
 - **`/checkout/success`** and **`/checkout/failed`** — payment result pages on the
   design system (no dependency; the Stripe wiring in Milestone D redirects here).
 
+## Header / mobile fixes (June 2026)
+
+### Fixed
+- **Header overflow on mobile / zoom-out.** The inline nav links and the
+  Dashboard/Profile/Get Pro buttons used mismatched breakpoints, so they leaked
+  onto narrow/zoomed viewports and pushed the page sideways. The header is now
+  consistent at every width: logo + search + theme + menu always; Dashboard/
+  Profile/Get Pro show only at `lg+`; all nav links live in the dropdown menu.
+  No more horizontal shift on mobile.
+- **Mobile search was blocked / grayed out.** The search modal rendered inside
+  the bottom-nav's stacking context (`z-50`), so the floating AI button painted
+  over it and ate the clicks. The modal is now rendered via `createPortal` to
+  `document.body` (`z-1000`), so it always sits above everything. Header search
+  is also usable on mobile now (icon button). Backdrop click closes it.
+
+### Changed
+- **"AI Tutor" now opens a floating window** on the current page instead of
+  navigating to `/ai-tutor`. New `AITutorProvider` + `AITutorWidget` (a small
+  chat panel); triggered by the header "AI Tutor" item, the mobile bottom-nav
+  "Tutor" button, and the floating AI button. (Demo responses; wire to the live
+  AIService in Stage 6 for real answers.)
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

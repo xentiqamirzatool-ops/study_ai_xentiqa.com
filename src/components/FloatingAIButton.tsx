@@ -1,13 +1,23 @@
 'use client';
 
-import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Bot, Sparkles } from 'lucide-react';
+import { useAITutor } from '@/components/ai/AITutorContext';
 
 export default function FloatingAIButton() {
+  const pathname = usePathname();
+  const { open, openTutor } = useAITutor();
+
+  // Hide on admin, and hide while the tutor window is already open.
+  if (pathname?.startsWith('/admin') || open) {
+    return null;
+  }
+
   return (
-    <Link
-      href="/ai-tutor"
-      className="group fixed bottom-24 right-6 z-50"
+    <button
+      type="button"
+      onClick={openTutor}
+      className="group fixed bottom-24 right-6 z-50 lg:bottom-6"
       aria-label="Open AI Tutor"
     >
       <div className="relative">
@@ -25,6 +35,6 @@ export default function FloatingAIButton() {
       <div className="absolute right-20 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-xl bg-[var(--bg-base)] px-4 py-2 text-sm font-bold text-[var(--text-strong)] shadow-xl group-hover:block">
         Ask AI Tutor
       </div>
-    </Link>
+    </button>
   );
 }

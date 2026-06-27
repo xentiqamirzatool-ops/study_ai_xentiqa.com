@@ -6,6 +6,8 @@ import Footer from '@/components/layout/Footer';
 import MobileBottomNav from '@/components/layout/MobileBottomNav';
 import FloatingAIButton from '@/components/FloatingAIButton';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { AITutorProvider } from '@/components/ai/AITutorContext';
+import AITutorWidget from '@/components/ai/AITutorWidget';
 
 export const metadata: Metadata = {
   title: 'StudyAI — Learn AI, ML & Prompt Engineering',
@@ -21,17 +23,21 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="dark">
       <body className="min-h-screen flex flex-col bg-[var(--bg-base)] text-[var(--text-body)] pb-20 lg:pb-0">
         <ThemeProvider>
-          <Header />
+          <AITutorProvider>
+            <Header />
 
-          <main className="flex-1">
-            {children}
-          </main>
+            <main className="flex-1">
+              {children}
+            </main>
 
-          <Footer />
+            <Footer />
 
-          <FloatingAIButton />
+            <FloatingAIButton />
 
-          <MobileBottomNav />
+            <MobileBottomNav />
+
+            <AITutorWidget />
+          </AITutorProvider>
         </ThemeProvider>
       </body>
     </html>
