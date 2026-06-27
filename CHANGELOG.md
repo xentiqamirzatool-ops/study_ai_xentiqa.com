@@ -157,6 +157,15 @@ Settings sub-pages (Stage 8). No new dependencies.
   and are available in the menu on mobile. Mobile header now reads:
   logo · search · theme · Pro · menu — fits without overflow.
 
+## Header breakpoint hardening (June 2026)
+
+### Fixed
+- Pushed Dashboard/Profile to **`xl`** (≥1280px) instead of `lg`, removing the
+  ~1024–1279px "tight zone" where Dashboard+Profile+Pro+menu could crowd and
+  clip the Pro button / hamburger. Now everything below 1280px (phones, tablets,
+  and desktop-width proxies) shows the compact header: logo · search · theme ·
+  Pro · ☰. Dashboard/Profile remain available in the menu below 1280px.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

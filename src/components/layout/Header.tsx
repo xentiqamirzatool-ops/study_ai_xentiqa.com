@@ -64,12 +64,12 @@ export default function Header() {
 
           <ThemeToggle />
 
-          <Link href="/dashboard" className="hidden lg:inline-flex btn btn-outline">
+          <Link href="/dashboard" className="hidden xl:inline-flex btn btn-outline">
             <LayoutDashboard className="h-4 w-4" />
             Dashboard
           </Link>
 
-          <Link href="/profile" className="hidden lg:inline-flex btn btn-outline">
+          <Link href="/profile" className="hidden xl:inline-flex btn btn-outline">
             <User className="h-4 w-4" />
             Profile
           </Link>
@@ -134,7 +134,7 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="container-wide mt-3 grid grid-cols-2 gap-3 px-0 lg:hidden">
+          <div className="container-wide mt-3 grid grid-cols-2 gap-3 px-0 xl:hidden">
             <Link href="/dashboard" onClick={() => setOpen(false)} className="btn btn-outline">
               Dashboard
             </Link>
