@@ -263,6 +263,39 @@ Settings sub-pages (Stage 8). No new dependencies.
 - **Contact page redesigned** — neural-backdrop hero, info cards, a glassy form
   with a success state. Approachable and on-brand.
 
+## PWA — now installable & offline-capable (June 2026)
+
+### Added
+- **Service worker** (`public/sw.js`, no dependency) — precaches the app shell,
+  serves an offline page on navigation failure, and uses stale-while-revalidate
+  for same-origin assets (fast repeat loads).
+- **`ServiceWorkerRegister`** component (registers the SW in production only, so
+  dev hot-reload is unaffected) wired into the root layout.
+- Real **`/offline`** route so the SW has a page to serve when offline.
+
+### Changed
+- Manifest hardened for installability: PNG icons (192/512 + maskable) + SVG
+  fallback, brand theme/background color (`#0b1020`).
+
+> Test in **production** (`npm run build` then `npm run start`, or the deployed
+> site) — the SW is disabled in `npm run dev`.
+
+## Course content — ALL 10 courses (June 2026)
+
+### Added
+- **Full lesson content** (solid & practical depth) for **all 10 courses (~60
+  lessons)**, replacing the one-line demo text. Every lesson now has a real
+  explanation, "what you'll learn" bullets, a worked example/code, real-world
+  note, common mistakes, and a quiz:
+  - AI Fundamentals · Prompt Engineering · Python for AI · Machine Learning
+    Basics · Generative AI · AI Agents · ChatGPT for Productivity · AI for
+    Business · Computer Vision · NLP Basics
+- All course/lesson **slugs preserved**, so existing links and SSG still work.
+- Redirected the orphan **/ai-tutor** route to home (the tutor is the floating
+  chatbot now).
+
+> ⚠️ Large data edit — run `npm run build` once to confirm it compiles.
+
 ### Still open (later milestones)
 - Real auth (Clerk) + `middleware.ts` route protection — Stage 7.
 - Backend/API + database persistence — Stage 11.

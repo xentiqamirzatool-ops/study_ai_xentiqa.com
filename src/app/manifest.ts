@@ -11,8 +11,8 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: '/',
     display: 'standalone',
     orientation: 'portrait',
-    background_color: '#0f172a',
-    theme_color: '#2563eb',
+    background_color: '#0b1020',
+    theme_color: '#0b1020',
 
     lang: 'en',
     dir: 'ltr',
@@ -26,17 +26,10 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
 
     icons: [
-      {
-        src: '/logo.svg',
-        sizes: 'any',
-        type: 'image/svg+xml',
-      },
-      {
-        src: '/logo.svg',
-        sizes: 'any',
-        type: 'image/svg+xml',
-        purpose: 'maskable',
-      },
+      { src: '/logo.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: '/logo.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: '/logo.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+      { src: '/logo.svg', sizes: 'any', type: 'image/svg+xml' },
     ],
   };
 }

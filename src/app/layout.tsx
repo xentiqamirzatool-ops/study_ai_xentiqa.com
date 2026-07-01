@@ -8,6 +8,7 @@ import FloatingAIButton from '@/components/FloatingAIButton';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AITutorProvider } from '@/components/ai/AITutorContext';
 import AITutorWidget from '@/components/ai/AITutorWidget';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://study.ai.xentiqa.com';
 
@@ -61,6 +62,8 @@ export default function RootLayout({
             <MobileBottomNav />
 
             <AITutorWidget />
+
+            <ServiceWorkerRegister />
           </AITutorProvider>
         </ThemeProvider>
       </body>
